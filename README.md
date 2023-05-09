@@ -8,3 +8,4 @@ The user can select from a pre-defined list of buttons or enter a desired prefix
 
 ### High level Diagram
 
+![](images/ipam-helper-arch.png)
