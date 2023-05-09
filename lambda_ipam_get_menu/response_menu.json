@@ -1,0 +1,79 @@
+{
+	"blocks": [
+		{
+			"type": "header",
+			"text": {
+				"type": "plain_text",
+				"text": "Welcome to the IPAM Helper - Please Choose An Option Below",
+				"emoji": true
+			}
+		},
+		{
+			"type": "divider"
+		},
+		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": "View All *VPN IP Ranges*"
+			},
+			"accessory": {
+				"type": "button",
+				"text": {
+					"type": "plain_text",
+					"text": "VPN Subnets",
+					"emoji": true
+				},
+				"value": "vpn_subnet",
+				"action_id": "button-action"
+			}
+		},
+		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": "View All *Public Egress IP Ranges*"
+			},
+			"accessory": {
+				"type": "button",
+				"text": {
+					"type": "plain_text",
+					"text": "Egress Subnets",
+					"emoji": true
+				},
+				"value": "public_egress",
+				"action_id": "button-action"
+			}
+		},
+		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": "View All *Wireless User IP Ranges*"
+			},
+			"accessory": {
+				"type": "button",
+				"text": {
+					"type": "plain_text",
+					"text": "Wireless User Subnets",
+					"emoji": true
+				},
+				"value": "Wireless_user_subnet",
+				"action_id": "button-action"
+			}
+		},
+		{
+			"dispatch_action": true,
+			"type": "input",
+			"element": {
+				"type": "plain_text_input",
+				"action_id": "plain_text_input-action"
+			},
+			"label": {
+				"type": "plain_text",
+				"text": "Request Information For IP Address or Prefix",
+				"emoji": true
+			}
+		}
+	]
+}

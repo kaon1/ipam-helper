@@ -1,0 +1,59 @@
+---
+kind: secret
+name: <redacted>
+get:
+  path: <redacted>
+  name: dev
+
+---
+kind: secret
+name: <redacted>
+get:
+  path: <redacted>
+  name: prd
+
+---
+kind: pipeline
+name: default
+
+workspace:
+  path: /drone/src
+
+steps:
+  - name: decode-creds
+    image: <redacted>
+    settings:
+      encoded_creds:
+        from_secret: <redacted>
+
+  - name: fmt-module
+    image: hashicorp/terraform
+    commands:
+      - cd terraform/modules/ipam-helper
+      - terraform fmt -check -diff=true
+
+  - name: fmt-awsma-prd
+    image: hashicorp/terraform
+    commands:
+      - cd terraform/prd
+      - terraform fmt -check -diff=true
+
+  - name: prd-terraform-plan
+    image: hashicorp/terraform
+    commands:
+      - cd terraform/prd
+      - terraform init -input=false
+      - terraform plan -out=PLANFILE -input=false -lock-timeout=5m
+      - sleep 30
+    when:
+      event: push
+      branch: main
+
+  - name: prd-terraform-apply
+    image: hashicorp/terraform
+    commands:
+      - cd terraform/prd
+      - terraform apply -input=false -lock-timeout=5m PLANFILE
+    when:
+      event: push
+      branch: main
