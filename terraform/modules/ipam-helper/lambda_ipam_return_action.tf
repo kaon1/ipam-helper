@@ -37,10 +37,7 @@ resource "aws_lambda_function" "ipam_return_action" {
   memory_size      = 128 # Default value in MB
 
   vpc_config {
-    # dev
-    # subnet_ids = ["subnet-06cc392b822724425", "subnet-02a56756d35ab3580"]
-    # prod
-    subnet_ids         = ["subnet-0d1817b1073a257b7", "subnet-0555d7863e03d8e71"]
+    subnet_ids         = ["<subnet1>", "<subnet2>"]
     security_group_ids = [aws_security_group.lambda_slackbot_sg.id]
   }
 
